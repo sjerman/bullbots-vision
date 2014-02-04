@@ -91,14 +91,12 @@ public class RecognitionApp extends JFrame {
 						.getDiameter()));
 				if (q.isFull()) {
 					if (xDistance != q.getOffset() || diameter != q.getSize()) {
-						xDistance = processor.getXDistance();
-						diameter = processor.getDiameter();
-						table.putNumber("xdistance", xDistance);
-						table.putNumber("diameter", diameter);
+						table.putNumber("xdistance", q.getOffset());
+						table.putNumber("diameter", q.getSize());
+						isFound=true; 
 						table.putBoolean("ballfound", isFound);
 						long n = System.nanoTime();
-						
-						System.out.println("New image: "+ (n-last)+ "ns  :"+xDistance + "  "
+						System.out.println("New image: "+ (n-last)/1000+ "ms  :"+xDistance + "  "
 								+ diameter  );
 						last = n;
 					}
@@ -110,12 +108,6 @@ public class RecognitionApp extends JFrame {
 					table.putBoolean("ballfound", isFound);
 					q.clear();
 				}
-			}
-
-			try {
-				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
 			}
 		}
 	}
