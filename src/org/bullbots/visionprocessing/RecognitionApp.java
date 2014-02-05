@@ -22,6 +22,8 @@ public class RecognitionApp extends JFrame {
 	private final ImageProcessor processor = new ImageProcessor();
 
 	private NetworkTable table;
+	
+	private ConnectionListener conListener= new ConnectionListener();
 
 	private JLabel leftImage = new JLabel();
 	private JLabel rightImage = new JLabel();
@@ -56,8 +58,10 @@ public class RecognitionApp extends JFrame {
 
 	public void initTable() {
 		NetworkTable.setClientMode();
-		NetworkTable.setIPAddress("10.18.91.2");
+		NetworkTable.setTeam(1891);
+//		NetworkTable.setIPAddress("10.18.91.2");
 		table = NetworkTable.getTable("balltable");
+		table.addConnectionListener(conListener, true);
 		System.out.println(">> NetworkTable setup has successfully finished.");
 	}
 
@@ -96,9 +100,15 @@ public class RecognitionApp extends JFrame {
 						isFound=true; 
 						table.putBoolean("ballfound", isFound);
 						long n = System.nanoTime();
-						System.out.println("New image: "+ (n-last)/1000+ "ms  :"+xDistance + "  "
-								+ diameter  );
+//						System.out.println("New image: "+ (n-last)/1000+ "ms  :"+xDistance + "  "
+//								+ diameter  );
 						last = n;
+						try {
+							Thread.sleep(20);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				}
 
