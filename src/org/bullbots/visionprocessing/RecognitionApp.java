@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import org.bullbots.visionprocessing.camera.AxisCamera;
+import org.bullbots.visionprocessing.camera.impl.AxisCamera;
 import org.opencv.core.Mat;
 
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
@@ -15,10 +15,8 @@ public class RecognitionApp extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	private final AxisCamera camera = new AxisCamera(
-			"http://10.18.91.11/mjpg/video.mjpg");
-	// private final Camera camera = new
-	// Camera("http://10.18.91.20/mjpg/video.mjpg");
+	private final AxisCamera camera = new AxisCamera();
+
 	private final ImageProcessor processor = new ImageProcessor();
 
 	private NetworkTable table;
@@ -76,7 +74,7 @@ public class RecognitionApp extends JFrame {
 
 		System.out.println("\n>> Processing has now begun:");
 		while (true) {
-			BufferedImage cameraImage = camera.getImage();
+			BufferedImage cameraImage = camera.getBIImage();
 			Mat[] matImages = processor.processImage(processor
 					.convBuff2Mat(cameraImage));
 

@@ -1,4 +1,4 @@
-package org.bullbots.visionprocessing.camera;
+package org.bullbots.visionprocessing.camera.impl;
 
 public class Base64Encoder {
 	public String encode(String s) {
