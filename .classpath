@@ -2,7 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/networktables-desktop.jar"/>
+	<classpathentry kind="lib" path="lib/networktables-desktop.jar" sourcepath="lib/networktables-desktop-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/BullbotsVisionProcessor/lib/networktables-desktop-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/OpenCV"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
