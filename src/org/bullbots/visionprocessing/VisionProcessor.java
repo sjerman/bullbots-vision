@@ -1,50 +1,40 @@
 package org.bullbots.visionprocessing;
 
-import org.bullbots.visionprocessing.camera.Camera;
 import org.opencv.core.Mat;
 
-import java.lang.ClassLoader;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
-public class VisionProcessor {
-	Settings settings = Settings.getInstance();
-	
-	Camera camera;
-	
-	void init(){
-		 camera = loadCamera();
-	}
+public class VisionProcessor extends AbstractVisionProcessor {
 
-	private Camera loadCamera() {
-		ClassLoader cl = ClassLoader.getSystemClassLoader();
-		Camera camera = null;
-		Class<?> clazz=null;
-		try {
-			clazz = cl.loadClass(settings.getProperty(Settings.CAMERA_CLASS));
-			camera = (Camera) clazz.newInstance();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		assert(camera != null);
-		System.out.println("Camera loaded...");
-		return camera;
-	}
-	
-	//processor
-	void run(){
+	// processor
+	void run() {
+
+		NetworkTable.setIPAddress("localhost");
+		NetworkTable t = NetworkTable.getTable("test");
 		// main loop
 		init();
-		
-		while (true){
+
+		int n = 0;
+		while (true) {
+
 			Mat img = camera.getImage();
-			System.out.println(">>"+img.height()+" "+img.width());
+			System.out.println(">>" + img.height() + " " + img.width());
+			t.putNumber("count", n);
+
+			Mode m = getMode();
+			switch (m) {
+			case AUTO:
+				break;
+			case TELEOP:
+				
+				break;
+			}
+
+			sleep();
 		}
 	}
-	
-	//Main file
+
+	// Main file
 	public static void main(String[] args) {
 		new VisionProcessor().run();
 	}

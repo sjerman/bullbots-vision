@@ -1,4 +1,4 @@
-package org.bullbots.visionprocessing;
+package org.bullbots.visionprocessing.processor;
 
 public interface ImgInfo {
 

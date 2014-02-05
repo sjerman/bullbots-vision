@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import org.bullbots.visionprocessing.camera.impl.AxisCamera;
+import org.bullbots.visionprocessing.processor.AveragingQueue;
+import org.bullbots.visionprocessing.processor.impl.ImageProcessor;
+import org.bullbots.visionprocessing.processor.impl.ImgInfoImpl;
 import org.opencv.core.Mat;
 
 import edu.wpi.first.wpilibj.networktables.NetworkTable;

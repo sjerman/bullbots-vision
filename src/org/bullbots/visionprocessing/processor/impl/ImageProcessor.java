@@ -1,4 +1,4 @@
-package org.bullbots.visionprocessing;
+package org.bullbots.visionprocessing.processor.impl;
 
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -26,8 +26,6 @@ public class ImageProcessor {
 	
 	public ImageProcessor() {
 		// Loading the library
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-        System.out.println(">> Successfully loaded native library [OpenCV " + Core.VERSION + "]");
 	}
     
     public Mat[] processImage(Mat image) {

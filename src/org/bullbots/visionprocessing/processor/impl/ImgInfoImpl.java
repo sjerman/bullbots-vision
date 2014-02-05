@@ -1,4 +1,6 @@
-package org.bullbots.visionprocessing;
+package org.bullbots.visionprocessing.processor.impl;
+
+import org.bullbots.visionprocessing.processor.ImgInfo;
 
 public class ImgInfoImpl implements ImgInfo {
 	float offset,size;
