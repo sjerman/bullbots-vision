@@ -1,33 +1,40 @@
 package org.bullbots.visionprocessing;
 
 import org.bullbots.visionprocessing.camera.Camera;
+import org.bullbots.visionprocessing.processor.BallFinder;
 import org.opencv.core.Core;
 
 public class AbstractVisionProcessor {
-	
+
 	public enum Mode {
 		AUTO, TELEOP
 	}
 
 	Settings settings = Settings.getInstance();
+
 	protected Camera camera;
+	protected BallFinder ballfinder;
 
 	public AbstractVisionProcessor() {
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-        System.out.println(">> Successfully loaded native library [OpenCV " + Core.VERSION + "]");
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+		System.out.println(">> Successfully loaded native library [OpenCV "
+				+ Core.VERSION + "]");
 	}
 
 	protected void init() {
-		camera = loadCamera();
+		camera = loadClass(Camera.class,
+				settings.getProperty(Settings.CAMERA_CLASS));
+		ballfinder = loadClass(BallFinder.class,
+				settings.getProperty(Settings.BALLFINDER_CLASS));
 	}
 
-	private Camera loadCamera() {
+	private <T> T loadClass(Class T, String className) {
 		ClassLoader cl = ClassLoader.getSystemClassLoader();
-		Camera camera = null;
+		T inst = null;
 		Class<?> clazz = null;
 		try {
-			clazz = cl.loadClass(settings.getProperty(Settings.CAMERA_CLASS));
-			camera = (Camera) clazz.newInstance();
+			clazz = cl.loadClass(className);
+			inst = (T) clazz.newInstance();
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
@@ -35,9 +42,8 @@ public class AbstractVisionProcessor {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		assert (camera != null);
-		System.out.println("Camera loaded...");
-		return camera;
+		assert (inst != null);
+		return inst;
 	}
 
 	protected Mode getMode() {
@@ -46,7 +52,7 @@ public class AbstractVisionProcessor {
 
 	protected void sleep() {
 		try {
-			Thread.sleep(100);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

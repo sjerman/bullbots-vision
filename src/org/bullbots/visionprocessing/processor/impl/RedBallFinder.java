@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.util.ArrayList;
 
+import org.bullbots.visionprocessing.processor.BallFinder;
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
@@ -18,13 +19,13 @@ import org.opencv.highgui.Highgui;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.imgproc.Moments;
 
-public class ImageProcessor {
+public class RedBallFinder implements BallFinder {
 	
 	private double xDistance;
 	private double diameter;
 	private boolean ballFound = false;
 	
-	public ImageProcessor() {
+	public RedBallFinder() {
 		// Loading the library
 	}
     

@@ -9,8 +9,8 @@ public class VisionProcessor extends AbstractVisionProcessor {
 	// processor
 	void run() {
 
-		NetworkTable.setIPAddress("localhost");
-		NetworkTable t = NetworkTable.getTable("test");
+//		NetworkTable.setIPAddress("localhost");
+//		NetworkTable t = NetworkTable.getTable("test");
 		// main loop
 		init();
 
@@ -19,7 +19,6 @@ public class VisionProcessor extends AbstractVisionProcessor {
 
 			Mat img = camera.getImage();
 			System.out.println(">>" + img.height() + " " + img.width());
-			t.putNumber("count", n);
 
 			Mode m = getMode();
 			switch (m) {
@@ -29,7 +28,6 @@ public class VisionProcessor extends AbstractVisionProcessor {
 				
 				break;
 			}
-
 			sleep();
 		}
 	}

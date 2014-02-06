@@ -9,6 +9,10 @@ public class Settings extends Properties{
 	
 	private static String PROPERTIES_FILE = "vision.properties";
 	
+	static String CAMERA_CLASS = "camera";
+	
+	static String BALLFINDER_CLASS = "ballfinder";
+	
 	private static Settings INSTANCE=null;
 	
 	private Settings() {
@@ -32,6 +36,6 @@ public class Settings extends Properties{
 	}
 
 
-	static String CAMERA_CLASS = "camera";
+
 
 }

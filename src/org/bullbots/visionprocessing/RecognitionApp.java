@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 
 import org.bullbots.visionprocessing.camera.impl.AxisCamera;
 import org.bullbots.visionprocessing.processor.AveragingQueue;
-import org.bullbots.visionprocessing.processor.impl.ImageProcessor;
+import org.bullbots.visionprocessing.processor.impl.RedBallFinder;
 import org.bullbots.visionprocessing.processor.impl.ImgInfoImpl;
 import org.opencv.core.Mat;
 
@@ -20,7 +20,7 @@ public class RecognitionApp extends JFrame {
 
 	private final AxisCamera camera = new AxisCamera();
 
-	private final ImageProcessor processor = new ImageProcessor();
+	private final RedBallFinder processor = new RedBallFinder();
 
 	private NetworkTable table;
 	
