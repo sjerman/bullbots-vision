@@ -42,7 +42,7 @@ public class BallFinderQueue extends ArrayDeque<ImgInfo> implements ImgInfo {
 	public float getSize() {
 		float size = 0.0F;
 		for (ImgInfo i : this) {
-			size += i.getOffset();
+			size += i.getSize();
 		}
 		return size / this.size();
 	}
