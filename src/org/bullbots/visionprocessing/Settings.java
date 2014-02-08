@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.bullbots.visionprocessing.AbstractVisionProcessor.Mode;
+
 public class Settings extends Properties {
 
 	private static String PROPERTIES_FILE = "vision.properties";
@@ -18,6 +20,8 @@ public class Settings extends Properties {
 	public static final String TEST_MODE = "testmode";
 
 	public static final String SHOW_IMAGE = "showimage";
+
+	public static final String AUTONOMOUS_PROCESSOR = "autoprocessor";
 
 	private static Settings INSTANCE = null;
 
@@ -49,6 +53,10 @@ public class Settings extends Properties {
 			return true;
 		else
 			return false;
+	}
+	
+	public static String getTestMode(){
+		return getInstance().getProperty(TEST_MODE,"AUTO");
 	}
 
 }

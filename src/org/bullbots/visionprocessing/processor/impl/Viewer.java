@@ -1,4 +1,4 @@
-package org.bullbots.visionprocessing.processor;
+package org.bullbots.visionprocessing.processor.impl;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -35,18 +35,17 @@ public class Viewer extends JFrame {
 		getContentPane().add(imageContainer, BorderLayout.CENTER);
 		pack();
 		setLocationRelativeTo(null);
-		setLayout(null);
 		setResizable(false);
 		setVisible(true);
 	}
 
 	public void setImage(Mat image) {
 		imageContainer.setIcon(new ImageIcon(convMat2Buff(image)));
+		imageContainer.repaint();
 		repaint();
 	}
 
 	public BufferedImage convMat2Buff(Mat mat) {
-		Highgui.imwrite("IMAGE2.JPG", mat);
 		// Code for converting Mat to BufferedImage
 		int type = BufferedImage.TYPE_BYTE_GRAY;
 		if (mat.channels() > 1) {

@@ -1,6 +1,7 @@
 package org.bullbots.visionprocessing;
 
 import org.bullbots.visionprocessing.AbstractVisionProcessor.Mode;
+import org.bullbots.visionprocessing.processor.AutoInfo;
 import org.bullbots.visionprocessing.processor.ImgInfo;
 
 public interface VisionNetworkTable {
@@ -9,6 +10,6 @@ public interface VisionNetworkTable {
 
 	void setTeleopInfo(ImgInfo info);
 
-	void setAutoInfo();
+	void setAutoInfo(AutoInfo info);
 
 }

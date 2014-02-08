@@ -110,7 +110,4 @@ public class AxisCamera implements Camera {
 		return matImage;
 	}
 
-	public BufferedImage getBIImage() {
-		return grabImage();
-	}
 }

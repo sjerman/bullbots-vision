@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import org.bullbots.visionprocessing.Settings;
 import org.bullbots.visionprocessing.processor.BallFinder;
 import org.bullbots.visionprocessing.processor.ImgInfo;
-import org.bullbots.visionprocessing.processor.Viewer;
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;

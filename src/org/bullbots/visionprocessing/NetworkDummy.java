@@ -1,6 +1,7 @@
 package org.bullbots.visionprocessing;
 
 import org.bullbots.visionprocessing.AbstractVisionProcessor.Mode;
+import org.bullbots.visionprocessing.processor.AutoInfo;
 import org.bullbots.visionprocessing.processor.ImgInfo;
 
 public class NetworkDummy implements VisionNetworkTable {
@@ -10,8 +11,7 @@ public class NetworkDummy implements VisionNetworkTable {
 
 	@Override
 	public Mode getRobotMode() {
-		String mStr = Settings.getInstance().getProperty(Settings.TEST_MODE,
-				"AUTO");
+		String mStr = Settings.getTestMode();
 		return Mode.valueOf(mStr);
 	}
 
@@ -32,7 +32,7 @@ public class NetworkDummy implements VisionNetworkTable {
 	}
 
 	@Override
-	public void setAutoInfo() {
+	public void setAutoInfo(AutoInfo info) {
 		// TODO Auto-generated method stub
 
 	}

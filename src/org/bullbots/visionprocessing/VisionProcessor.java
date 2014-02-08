@@ -28,7 +28,6 @@ public class VisionProcessor extends AbstractVisionProcessor {
 
 	private void handleTeleOp() {
 		Mat img = camera.getImage();
-		System.out.println(">>" + img.height() + " " + img.width());
 		ImgInfo info = ballfinder.processImage(img);
 		if (info == null) {
 			bfQueue.clear();
@@ -36,14 +35,14 @@ public class VisionProcessor extends AbstractVisionProcessor {
 		} else {
 			bfQueue.add(info);
 			if (bfQueue.isFull()) {
-				networkTable.setTeleopInfo(info);
+				networkTable.setTeleopInfo(bfQueue);
 			}
 		}
 	}
 
 	private void handleAuto() {
-		// TODO Auto-generated method stub
-
+		Mat img = camera.getImage();
+		ImgInfo info = ballfinder.processImage(img);
 	}
 
 	// Main file

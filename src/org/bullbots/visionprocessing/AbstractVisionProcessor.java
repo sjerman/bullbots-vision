@@ -1,6 +1,7 @@
 package org.bullbots.visionprocessing;
 
 import org.bullbots.visionprocessing.camera.Camera;
+import org.bullbots.visionprocessing.processor.AutonomousProcessor;
 import org.bullbots.visionprocessing.processor.BallFinder;
 import org.opencv.core.Core;
 
@@ -27,6 +28,7 @@ public class AbstractVisionProcessor {
 	protected Camera camera;
 	protected BallFinder ballfinder;
 	protected VisionNetworkTable networkTable;
+	protected AutonomousProcessor autonomousProcessor;
 
 	public AbstractVisionProcessor() {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
@@ -41,6 +43,8 @@ public class AbstractVisionProcessor {
 				settings.getProperty(Settings.BALLFINDER_CLASS));
 		networkTable = loadClass(VisionNetworkTable.class,
 				settings.getProperty(Settings.NETWORKTABLE_CLASS));
+		autonomousProcessor = loadClass(AutonomousProcessor.class,
+				settings.getProperty(Settings.AUTONOMOUS_PROCESSOR));
 	}
 
 	private <T> T loadClass(Class T, String className) {
@@ -62,7 +66,7 @@ public class AbstractVisionProcessor {
 	}
 
 	protected Mode getMode() {
-		return Mode.TELEOP;
+		return networkTable.getRobotMode();
 	}
 
 	protected void sleep() {

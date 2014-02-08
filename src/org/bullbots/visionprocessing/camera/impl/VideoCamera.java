@@ -28,7 +28,6 @@ public class VideoCamera implements Camera {
 
 		Imgproc.resize(image, image, new Size(320, 240));
 
-		Highgui.imwrite("IMAGE.JPG", image);
 		return image;
 	}
 

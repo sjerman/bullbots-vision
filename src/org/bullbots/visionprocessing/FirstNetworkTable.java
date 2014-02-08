@@ -1,6 +1,7 @@
 package org.bullbots.visionprocessing;
 
 import org.bullbots.visionprocessing.AbstractVisionProcessor.Mode;
+import org.bullbots.visionprocessing.processor.AutoInfo;
 import org.bullbots.visionprocessing.processor.ImgInfo;
 
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
@@ -27,7 +28,7 @@ public class FirstNetworkTable implements VisionNetworkTable {
 	}
 
 	@Override
-	public void setAutoInfo() {
+	public void setAutoInfo(AutoInfo info) {
 		// TODO Auto-generated method stub
 
 	}
