@@ -2,19 +2,16 @@ package org.bullbots.visionprocessing;
 
 import org.bullbots.visionprocessing.processor.BallFinderQueue;
 import org.bullbots.visionprocessing.processor.ImgInfo;
-import org.bullbots.visionprocessing.processor.Viewer;
 import org.opencv.core.Mat;
 
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
-
 public class VisionProcessor extends AbstractVisionProcessor {
-	
+
 	BallFinderQueue bfQueue = new BallFinderQueue(5);
 
 	// processor
 	void run() {
 		init();
-		
+
 		int n = 0;
 		while (true) {
 			Mode m = getMode();
@@ -33,20 +30,20 @@ public class VisionProcessor extends AbstractVisionProcessor {
 		Mat img = camera.getImage();
 		System.out.println(">>" + img.height() + " " + img.width());
 		ImgInfo info = ballfinder.processImage(img);
-		if (info==null){
+		if (info == null) {
 			bfQueue.clear();
 			networkTable.setTeleopInfo(info);
 		} else {
 			bfQueue.add(info);
 			if (bfQueue.isFull()) {
 				networkTable.setTeleopInfo(info);
-			}			
+			}
 		}
 	}
 
 	private void handleAuto() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	// Main file

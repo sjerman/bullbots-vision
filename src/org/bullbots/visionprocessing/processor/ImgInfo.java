@@ -4,6 +4,6 @@ public interface ImgInfo {
 
 	public float getOffset();
 
-	public float getSize() ;
+	public float getSize();
 
 }

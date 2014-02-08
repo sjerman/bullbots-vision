@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 public class FirstNetworkTable implements VisionNetworkTable {
 
 	NetworkTable networkTable;
-	
+
 	public FirstNetworkTable() {
 		NetworkTable.setTeam(1891);
 		NetworkTable t = NetworkTable.getTable("test");
@@ -23,14 +23,13 @@ public class FirstNetworkTable implements VisionNetworkTable {
 	@Override
 	public void setTeleopInfo(ImgInfo info) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setAutoInfo() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
 
 }
