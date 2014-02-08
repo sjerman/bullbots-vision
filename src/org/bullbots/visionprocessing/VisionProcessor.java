@@ -1,5 +1,6 @@
 package org.bullbots.visionprocessing;
 
+import org.bullbots.visionprocessing.processor.AutoInfo;
 import org.bullbots.visionprocessing.processor.BallFinderQueue;
 import org.bullbots.visionprocessing.processor.ImgInfo;
 import org.opencv.core.Mat;
@@ -14,7 +15,7 @@ public class VisionProcessor extends AbstractVisionProcessor {
 
 		int n = 0;
 		while (true) {
-			Mode m = getMode();
+			Mode m = networkTable.getRobotMode();
 			switch (m) {
 			case AUTO:
 				handleAuto();
@@ -42,7 +43,8 @@ public class VisionProcessor extends AbstractVisionProcessor {
 
 	private void handleAuto() {
 		Mat img = camera.getImage();
-		ImgInfo info = ballfinder.processImage(img);
+		AutoInfo info = autonomousProcessor.processImage(img);
+		 
 	}
 
 	// Main file

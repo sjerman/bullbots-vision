@@ -11,19 +11,7 @@ public class AbstractVisionProcessor {
 		AUTO, TELEOP
 	}
 
-	Settings settings = Settings.getInstance();
-
-	public Camera getCamera() {
-		return camera;
-	}
-
-	public BallFinder getBallfinder() {
-		return ballfinder;
-	}
-
-	public VisionNetworkTable getNetworkTable() {
-		return networkTable;
-	}
+	protected Settings settings = Settings.getInstance();
 
 	protected Camera camera;
 	protected BallFinder ballfinder;
@@ -63,10 +51,6 @@ public class AbstractVisionProcessor {
 		}
 		assert (inst != null);
 		return inst;
-	}
-
-	protected Mode getMode() {
-		return networkTable.getRobotMode();
 	}
 
 	protected void sleep() {
