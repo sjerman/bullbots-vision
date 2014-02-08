@@ -20,15 +20,6 @@ import org.opencv.imgproc.Moments;
 
 public class RedBallFinder implements BallFinder {
 
-	Mat processedImage;
-	Viewer viewer;
-
-	public RedBallFinder() {
-		if (Settings.showImage()) {
-			viewer = new Viewer();
-		}
-	}
-
 	public ImgInfo processImage(Mat image) {
 		double xDistance;
 		double diameter;
@@ -89,13 +80,13 @@ public class RedBallFinder implements BallFinder {
 								boundingRect.x + boundingRect.width,
 								boundingRect.y + boundingRect.height),
 						new Scalar(255, 255, 100));
-				viewer.setImage(image);
+				Settings.getViewer().setImage(image);
 			}
 
 			return new ImgInfoImpl(Math.round(xDistance), Math.round(diameter));
 		} else {
 			if (Settings.showImage()) {
-				viewer.setImage(image);
+				Settings.getViewer().setImage(image);
 			}
 		}
 

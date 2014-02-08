@@ -7,17 +7,11 @@ import org.opencv.core.Mat;
 
 public class AutonomousProcessorImpl implements AutonomousProcessor {
 	
-	Viewer viewer;
-	
-	public AutonomousProcessorImpl() {
-		if (Settings.showImage()) {
-			viewer = new Viewer();
-		}	}
 
 	@Override
 	public AutoInfo processImage(Mat image) {
 		if (Settings.showImage()) {
-			viewer.setImage(image);
+			Settings.getViewer().setImage(image);
 		}
 		return null;
 	}

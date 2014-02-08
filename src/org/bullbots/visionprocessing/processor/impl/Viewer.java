@@ -18,21 +18,23 @@ import org.opencv.imgproc.Imgproc;
 public class Viewer extends JFrame {
 
 	private JLabel imageContainer;
+	private ImageIcon imageIcon;
 
 	public Viewer() throws HeadlessException {
 		super();
+	    setLayout(new BorderLayout());
 		this.addWindowListener(new WindowAdapter() {
 
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
 			}
 		});
-		imageContainer = new JLabel("");
-
+		imageContainer = new JLabel();
+		imageIcon= new ImageIcon();
+		imageContainer.setIcon(imageIcon);
 		imageContainer.setBounds(0, 0, 320, 240);
 		this.setPreferredSize(new Dimension(320, 240));
-
-		getContentPane().add(imageContainer, BorderLayout.CENTER);
+		this.getContentPane().add(imageContainer);
 		pack();
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -40,9 +42,8 @@ public class Viewer extends JFrame {
 	}
 
 	public void setImage(Mat image) {
-		imageContainer.setIcon(new ImageIcon(convMat2Buff(image)));
+		imageIcon.setImage(convMat2Buff(image));
 		imageContainer.repaint();
-		repaint();
 	}
 
 	public BufferedImage convMat2Buff(Mat mat) {

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.bullbots.visionprocessing.AbstractVisionProcessor.Mode;
+import org.bullbots.visionprocessing.processor.impl.Viewer;
 
 public class Settings extends Properties {
 
@@ -24,6 +25,8 @@ public class Settings extends Properties {
 	public static final String AUTONOMOUS_PROCESSOR = "autoprocessor";
 
 	private static Settings INSTANCE = null;
+	
+	private Viewer viewer = null;
 
 	private Settings() {
 		super();
@@ -37,6 +40,10 @@ public class Settings extends Properties {
 			System.err.println("Couldn't read properties file:"
 					+ PROPERTIES_FILE);
 			System.exit(1);
+		}
+		String prop = getProperty(SHOW_IMAGE, "true");
+		if (prop.equals("true")) {
+			viewer = new Viewer();
 		}
 	}
 
@@ -57,6 +64,10 @@ public class Settings extends Properties {
 	
 	public static String getTestMode(){
 		return getInstance().getProperty(TEST_MODE,"AUTO");
+	}
+	
+	public static Viewer getViewer() {
+		return getInstance().viewer;
 	}
 
 }
