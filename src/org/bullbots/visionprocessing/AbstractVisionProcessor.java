@@ -8,7 +8,7 @@ import org.opencv.core.Core;
 public class AbstractVisionProcessor {
 
 	public enum Mode {
-		AUTO, TELEOP
+		AUTO, TELEOP, UNKNOWN
 	}
 
 	protected Settings settings = Settings.getInstance();

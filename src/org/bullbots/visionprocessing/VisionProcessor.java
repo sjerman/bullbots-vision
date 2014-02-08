@@ -15,14 +15,16 @@ public class VisionProcessor extends AbstractVisionProcessor {
 
 		int n = 0;
 		while (true) {
-			Mode m = networkTable.getRobotMode();
-			switch (m) {
+			Mode mode = networkTable.getRobotMode();
+			switch (mode) {
 			case AUTO:
 				handleAuto();
 				break;
 			case TELEOP:
 				handleTeleOp();
 				break;
+			default:
+				System.out.println("Mode is:"+mode+" - not doing anything....");
 			}
 		}
 	}
