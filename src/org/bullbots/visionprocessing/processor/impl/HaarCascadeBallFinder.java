@@ -33,7 +33,7 @@ public class HaarCascadeBallFinder implements BallFinder {
 	    MatOfRect faceDetections = new MatOfRect();
 	    ballFinder.detectMultiScale(image, faceDetections);
 
-	    System.out.println(String.format("Detected %s faces", faceDetections.toArray().length));
+	    //System.out.println(String.format("Detected %s faces", faceDetections.toArray().length));
 
 	    // Draw a bounding box around each face.
 	    for (Rect rect : faceDetections.toArray()) {
@@ -53,7 +53,7 @@ public class HaarCascadeBallFinder implements BallFinder {
 		if (bigRect != null) {
 
 			double diameter = Math.max(bigRect.width, bigRect.height);
-			double xDistance = ((bigRect.width+bigRect.x)/2) - (image.width() / 2);
+			double xDistance = (bigRect.width+(bigRect.x/2)) - (image.width() / 2);
 
 			if (Settings.showImage()) {
 		        Core.rectangle(image, new Point(bigRect.x, bigRect.y), new Point(bigRect.x + bigRect.width, bigRect.y + bigRect.height), new Scalar(0, 255, 0));
