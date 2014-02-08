@@ -21,7 +21,7 @@ public class Viewer extends JFrame {
 	private ImageIcon imageIcon;
 
 	public Viewer() throws HeadlessException {
-		super();
+		super("Modified camera image");
 	    setLayout(new BorderLayout());
 		this.addWindowListener(new WindowAdapter() {
 
