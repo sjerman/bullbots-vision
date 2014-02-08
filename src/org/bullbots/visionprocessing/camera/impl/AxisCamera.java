@@ -100,21 +100,7 @@ public class AxisCamera implements Camera{
 		return convBuff2Mat(grabImage());
 	}
 	
-	public BufferedImage convMat2Buff(Mat mat) {
-		// Code for converting Mat to BufferedImage
-		int type = BufferedImage.TYPE_BYTE_GRAY;
-		if(mat.channels() > 1) {
-			Mat mat2 = new Mat();
-			Imgproc.cvtColor(mat,  mat2, Imgproc.COLOR_BGR2RGB);
-			type = BufferedImage.TYPE_3BYTE_BGR;
-			mat = mat2;
-		}
-		byte[] b = new byte[mat.channels() * mat.cols() * mat.rows()];
-		mat.get(0, 0, b); // Get all the pixels
-		BufferedImage bImage = new BufferedImage(mat.cols(), mat.rows(), type);
-		bImage.getRaster().setDataElements(0, 0, mat.cols(), mat.rows(), b);
-		return bImage;
-	}
+
 	
 	public Mat convBuff2Mat(BufferedImage image) {
 		byte[] pixels = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();

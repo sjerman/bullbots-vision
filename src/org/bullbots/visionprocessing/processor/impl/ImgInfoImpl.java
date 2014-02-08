@@ -13,9 +13,9 @@ public class ImgInfoImpl implements ImgInfo {
 		return size;
 	}
 
-	public ImgInfoImpl(double d, double e) {
-		this.offset = (float) d;
-		this.size = (float) e;
+	public ImgInfoImpl(double offset, double size) {
+		this.offset = (float) offset;
+		this.size = (float) size;
 	}
 
 	@Override

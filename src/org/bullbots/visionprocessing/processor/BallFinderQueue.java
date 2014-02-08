@@ -3,7 +3,7 @@ package org.bullbots.visionprocessing.processor;
 import java.util.ArrayDeque;
 
 
-public class AveragingQueue extends ArrayDeque<ImgInfo> implements ImgInfo{
+public class BallFinderQueue extends ArrayDeque<ImgInfo> implements ImgInfo{
 	int max = 0;
 
 	@Override
@@ -15,7 +15,7 @@ public class AveragingQueue extends ArrayDeque<ImgInfo> implements ImgInfo{
 		return ret;
 	}
 
-	public AveragingQueue(int size) {
+	public BallFinderQueue(int size) {
 		super(size);
 		max = size;
 	}

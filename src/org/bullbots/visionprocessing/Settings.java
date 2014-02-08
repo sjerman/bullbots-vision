@@ -9,9 +9,15 @@ public class Settings extends Properties{
 	
 	private static String PROPERTIES_FILE = "vision.properties";
 	
-	static String CAMERA_CLASS = "camera";
+	public static final String NETWORKTABLE_CLASS = "networktable";
 	
-	static String BALLFINDER_CLASS = "ballfinder";
+	public static final String CAMERA_CLASS = "camera";
+	
+	public static final String BALLFINDER_CLASS = "ballfinder";
+	
+	public static final String TEST_MODE="testmode";
+
+	public static final String SHOW_IMAGE="showimage";
 	
 	private static Settings INSTANCE=null;
 	
@@ -35,7 +41,12 @@ public class Settings extends Properties{
 		return INSTANCE;
 	}
 
-
-
+	public static boolean showImage(){
+		String prop = getInstance().getProperty(SHOW_IMAGE, "true");
+		if (prop.equals("true"))
+			return true;
+		else
+			return false;
+	}
 
 }

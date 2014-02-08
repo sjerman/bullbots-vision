@@ -12,8 +12,21 @@ public class AbstractVisionProcessor {
 
 	Settings settings = Settings.getInstance();
 
+	public Camera getCamera() {
+		return camera;
+	}
+
+	public BallFinder getBallfinder() {
+		return ballfinder;
+	}
+
+	public VisionNetworkTable getNetworkTable() {
+		return networkTable;
+	}
+
 	protected Camera camera;
 	protected BallFinder ballfinder;
+	protected VisionNetworkTable networkTable;
 
 	public AbstractVisionProcessor() {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
@@ -26,6 +39,8 @@ public class AbstractVisionProcessor {
 				settings.getProperty(Settings.CAMERA_CLASS));
 		ballfinder = loadClass(BallFinder.class,
 				settings.getProperty(Settings.BALLFINDER_CLASS));
+		networkTable = loadClass(VisionNetworkTable.class,
+				settings.getProperty(Settings.NETWORKTABLE_CLASS));
 	}
 
 	private <T> T loadClass(Class T, String className) {
