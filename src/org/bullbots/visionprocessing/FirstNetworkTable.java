@@ -5,10 +5,12 @@ import org.bullbots.visionprocessing.processor.AutoInfo;
 import org.bullbots.visionprocessing.processor.ImgInfo;
 
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.tables.IRemote;
+import edu.wpi.first.wpilibj.tables.IRemoteConnectionListener;
 import edu.wpi.first.wpilibj.tables.ITable;
 import edu.wpi.first.wpilibj.tables.ITableListener;
 
-public class FirstNetworkTable implements VisionNetworkTable, ITableListener {
+public class FirstNetworkTable implements VisionNetworkTable, ITableListener, IRemoteConnectionListener {
 
 	NetworkTable networkTable;
 	
@@ -18,6 +20,7 @@ public class FirstNetworkTable implements VisionNetworkTable, ITableListener {
 		NetworkTable.setTeam(1891);
 		networkTable = NetworkTable.getTable("visionprocessing");
 		networkTable.addTableListener("robotMode", this, true);
+		networkTable.addConnectionListener(this, true);
 	}
 
 	@Override
@@ -49,6 +52,16 @@ public class FirstNetworkTable implements VisionNetworkTable, ITableListener {
 		if (key.equals("robotMode")){
 			mode = Mode.valueOf((String) value);
 		}
+	}
+
+	@Override
+	public void connected(IRemote remote) {
+		System.out.println("Robot connected");
+	}
+
+	@Override
+	public void disconnected(IRemote remote) {
+		System.out.println("Robot disconnected");
 	}
 
 }
