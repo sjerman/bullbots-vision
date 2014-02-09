@@ -1,5 +1,7 @@
 package org.bullbots.visionprocessing;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.bullbots.visionprocessing.AbstractVisionProcessor.Mode;
 import org.bullbots.visionprocessing.processor.AutoInfo;
 import org.bullbots.visionprocessing.processor.ImgInfo;
@@ -14,6 +16,8 @@ import edu.wpi.first.wpilibj.tables.ITableListener;
 public class FirstNetworkTable implements VisionNetworkTable, ITableListener, IRemoteConnectionListener {
 
 	NetworkTable networkTable;
+	
+	static Logger logger = LogManager.getLogger(FirstNetworkTable.class.getName());
 	
 	Mode mode= Mode.UNKNOWN;
 
@@ -53,19 +57,19 @@ public class FirstNetworkTable implements VisionNetworkTable, ITableListener, IR
 	public void valueChanged(ITable source, String key, Object value,
 			boolean isNew) {
 		if (key.equals("robotMode")){
-			System.out.println("Mode changed:"+value);
+			logger.trace("Mode changed:"+value);
 			mode = Mode.valueOf((String) value);
 		}
 	}
 
 	@Override
 	public void connected(IRemote remote) {
-		System.out.println("Robot connected");
+		logger.info("Robot connected");
 	}
 
 	@Override
 	public void disconnected(IRemote remote) {
-		System.out.println("Robot disconnected");
+		logger.info("Robot disconnected");
 	}
 
 }

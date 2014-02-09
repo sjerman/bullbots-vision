@@ -7,6 +7,8 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/BullbotsVisionProcessor/lib/networktables-desktop-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/log4j-api-2.0-beta9.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-core-2.0-beta9.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/OpenCV"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

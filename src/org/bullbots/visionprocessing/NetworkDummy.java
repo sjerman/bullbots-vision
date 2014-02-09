@@ -1,10 +1,15 @@
 package org.bullbots.visionprocessing;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.bullbots.visionprocessing.AbstractVisionProcessor.Mode;
 import org.bullbots.visionprocessing.processor.AutoInfo;
 import org.bullbots.visionprocessing.processor.ImgInfo;
 
 public class NetworkDummy implements VisionNetworkTable {
+	
+	static Logger logger = LogManager.getLogger(NetworkDummy.class.getName());
+
 
 	boolean norepeat = false;
 	long last = System.nanoTime();
@@ -19,13 +24,13 @@ public class NetworkDummy implements VisionNetworkTable {
 	public void setTeleopInfo(ImgInfo info) {
 		if (info == null) {
 			if (!norepeat) {
-				System.out.println("No ball...");
+				logger.info("No ball...");
 				norepeat = true;
 			}
 		} else {
 			long n = System.nanoTime();
 			long diff = (n - last) / 1000 / 1000;
-			System.out.println(diff + "ms Setting:" + info);
+			logger.info(diff + "ms Setting:" + info);
 			last = n;
 		}
 

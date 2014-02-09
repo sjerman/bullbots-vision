@@ -12,11 +12,15 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.bullbots.visionprocessing.camera.Camera;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 
 public class AxisCamera implements Camera {
+	
+	static Logger logger = LogManager.getLogger(AxisCamera.class.getName());
 
 	private String addr = "http://10.18.91.11/mjpg/video.mjpg", user = "frc",
 			pass = "frc";
@@ -35,8 +39,7 @@ public class AxisCamera implements Camera {
 
 	public AxisCamera() {
 		setupConnection();
-		System.out
-				.println(">> Connection to camera was successfully established.");
+		logger.info(">> Connection to camera was successfully established.");
 	}
 
 	public void setupConnection() {
