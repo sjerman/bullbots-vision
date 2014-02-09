@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.bullbots.visionprocessing.AbstractVisionProcessor.Mode;
 import org.bullbots.visionprocessing.processor.impl.Viewer;
 
 public class Settings extends Properties {
@@ -24,8 +23,10 @@ public class Settings extends Properties {
 
 	public static final String AUTONOMOUS_PROCESSOR = "autoprocessor";
 
+	public static final String VIDEO = "video";
+
 	private static Settings INSTANCE = null;
-	
+
 	private Viewer viewer = null;
 
 	private Settings() {
@@ -61,11 +62,16 @@ public class Settings extends Properties {
 		else
 			return false;
 	}
-	
-	public static String getTestMode(){
-		return getInstance().getProperty(TEST_MODE,"AUTO");
+
+	public static String getTestMode() {
+		return getInstance().getProperty(TEST_MODE, "AUTO");
 	}
-	
+
+	public static int getVideo() {
+		String vid = getInstance().getProperty(VIDEO, "0");
+		return Integer.parseInt(vid);
+	}
+
 	public static Viewer getViewer() {
 		return getInstance().viewer;
 	}

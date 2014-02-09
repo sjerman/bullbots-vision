@@ -6,7 +6,6 @@ import org.bullbots.visionprocessing.processor.AutonomousProcessor;
 import org.opencv.core.Mat;
 
 public class AutonomousProcessorImpl implements AutonomousProcessor {
-	
 
 	@Override
 	public AutoInfo processImage(Mat image) {

@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import org.bullbots.visionprocessing.AbstractVisionProcessor.Mode;
 import org.bullbots.visionprocessing.processor.AutoInfo;
 import org.bullbots.visionprocessing.processor.ImgInfo;
-import org.bullbots.visionprocessing.processor.impl.ImgInfoImpl;
 
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.tables.IRemote;
@@ -13,13 +12,15 @@ import edu.wpi.first.wpilibj.tables.IRemoteConnectionListener;
 import edu.wpi.first.wpilibj.tables.ITable;
 import edu.wpi.first.wpilibj.tables.ITableListener;
 
-public class FirstNetworkTable implements VisionNetworkTable, ITableListener, IRemoteConnectionListener {
+public class FirstNetworkTable implements VisionNetworkTable, ITableListener,
+		IRemoteConnectionListener {
 
 	NetworkTable networkTable;
-	
-	static Logger logger = LogManager.getLogger(FirstNetworkTable.class.getName());
-	
-	Mode mode= Mode.UNKNOWN;
+
+	static Logger logger = LogManager.getLogger(FirstNetworkTable.class
+			.getName());
+
+	Mode mode = Mode.UNKNOWN;
 
 	public FirstNetworkTable() {
 		NetworkTable.setTeam(1891);
@@ -37,10 +38,10 @@ public class FirstNetworkTable implements VisionNetworkTable, ITableListener, IR
 
 	@Override
 	public void setTeleopInfo(ImgInfo info) {
-		if (info != null){
+		if (info != null) {
 			networkTable.putBoolean("ballFound", true);
 			networkTable.putNumber("xoffset", info.getOffset());
-			networkTable.putNumber("size", info.getSize());			
+			networkTable.putNumber("size", info.getSize());
 		} else {
 			networkTable.putBoolean("ballFound", false);
 		}
@@ -56,8 +57,8 @@ public class FirstNetworkTable implements VisionNetworkTable, ITableListener, IR
 	@Override
 	public void valueChanged(ITable source, String key, Object value,
 			boolean isNew) {
-		if (key.equals("robotMode")){
-			logger.trace("Mode changed:"+value);
+		if (key.equals("robotMode")) {
+			logger.trace("Mode changed:" + value);
 			mode = Mode.valueOf((String) value);
 		}
 	}

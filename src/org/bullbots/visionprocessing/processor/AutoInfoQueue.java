@@ -22,10 +22,10 @@ public class AutoInfoQueue extends ArrayDeque<AutoInfo> implements AutoInfo {
 	@Override
 	public String toString() {
 		String s = "AutoInfoQueue [";
-//		for (ImgInfo i : this) {
-//			s += i.toString() + " ";
-//		}
-//		s += "]";
+		// for (ImgInfo i : this) {
+		// s += i.toString() + " ";
+		// }
+		// s += "]";
 		return s;
 	}
 

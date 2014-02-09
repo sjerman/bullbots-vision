@@ -7,9 +7,8 @@ import org.bullbots.visionprocessing.processor.AutoInfo;
 import org.bullbots.visionprocessing.processor.ImgInfo;
 
 public class NetworkDummy implements VisionNetworkTable {
-	
-	static Logger logger = LogManager.getLogger(NetworkDummy.class.getName());
 
+	static Logger logger = LogManager.getLogger(NetworkDummy.class.getName());
 
 	boolean norepeat = false;
 	long last = System.nanoTime();

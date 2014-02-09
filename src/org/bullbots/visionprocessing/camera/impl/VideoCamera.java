@@ -1,9 +1,9 @@
 package org.bullbots.visionprocessing.camera.impl;
 
+import org.bullbots.visionprocessing.Settings;
 import org.bullbots.visionprocessing.camera.Camera;
 import org.opencv.core.Mat;
 import org.opencv.core.Size;
-import org.opencv.highgui.Highgui;
 import org.opencv.highgui.VideoCapture;
 import org.opencv.imgproc.Imgproc;
 
@@ -13,7 +13,7 @@ public class VideoCamera implements Camera {
 	private Mat image;
 
 	public VideoCamera() {
-		VC = new VideoCapture(0);
+		VC = new VideoCapture(Settings.getVideo());
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {

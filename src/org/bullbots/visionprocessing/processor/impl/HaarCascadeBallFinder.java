@@ -2,55 +2,53 @@ package org.bullbots.visionprocessing.processor.impl;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
-import java.util.ArrayList;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bullbots.visionprocessing.Settings;
-import org.bullbots.visionprocessing.camera.impl.AxisCamera;
 import org.bullbots.visionprocessing.processor.BallFinder;
 import org.bullbots.visionprocessing.processor.ImgInfo;
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
-import org.opencv.core.MatOfPoint;
 import org.opencv.core.MatOfRect;
 import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
-import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
-import org.opencv.imgproc.Moments;
 import org.opencv.objdetect.CascadeClassifier;
 
 public class HaarCascadeBallFinder implements BallFinder {
-	
-	static Logger logger = LogManager.getLogger(HaarCascadeBallFinder.class.getName());
+
+	static Logger logger = LogManager.getLogger(HaarCascadeBallFinder.class
+			.getName());
 
 	public ImgInfo processImage(Mat image) {
-		
-	    // Create a face detector from the cascade file in the resources
-	    // directory.
-	    CascadeClassifier ballFinder = new CascadeClassifier(getClass().getResource("training.xml").getPath());
 
-	    // Detect faces in the image.
-	    // MatOfRect is a special container class for Rect.
-	    MatOfRect faceDetections = new MatOfRect();
-	    ballFinder.detectMultiScale(image, faceDetections);
+		// Create a face detector from the cascade file in the resources
+		// directory.
+		CascadeClassifier ballFinder = new CascadeClassifier(getClass()
+				.getResource("training.xml").getPath());
 
-	    logger.trace(String.format("Detected %s faces", faceDetections.toArray().length));
+		// Detect faces in the image.
+		// MatOfRect is a special container class for Rect.
+		MatOfRect faceDetections = new MatOfRect();
+		ballFinder.detectMultiScale(image, faceDetections);
 
-	    // Draw a bounding box around each face.
-	    for (Rect rect : faceDetections.toArray()) {
-	        Core.rectangle(image, new Point(rect.x, rect.y), new Point(rect.x + rect.width, rect.y + rect.height), new Scalar(0, 255, 0));
-	    }
+		logger.trace(String.format("Detected %s faces",
+				faceDetections.toArray().length));
 
+		// Draw a bounding box around each face.
+		for (Rect rect : faceDetections.toArray()) {
+			Core.rectangle(image, new Point(rect.x, rect.y), new Point(rect.x
+					+ rect.width, rect.y + rect.height), new Scalar(0, 255, 0));
+		}
 
 		// Finding the ball
-		Rect bigRect=null;
-	    for (Rect rect : faceDetections.toArray()) {
-			if (rect.area()>100) {
-				bigRect= rect;
+		Rect bigRect = null;
+		for (Rect rect : faceDetections.toArray()) {
+			if (rect.area() > 100) {
+				bigRect = rect;
 				break;
 			}
 		}
@@ -58,10 +56,13 @@ public class HaarCascadeBallFinder implements BallFinder {
 		if (bigRect != null) {
 
 			double diameter = Math.max(bigRect.width, bigRect.height);
-			double xDistance = (bigRect.width+(bigRect.x/2)) - (image.width() / 2);
+			double xDistance = (bigRect.width + (bigRect.x / 2))
+					- (image.width() / 2);
 
 			if (Settings.showImage()) {
-		        Core.rectangle(image, new Point(bigRect.x, bigRect.y), new Point(bigRect.x + bigRect.width, bigRect.y + bigRect.height), new Scalar(0, 255, 0));
+				Core.rectangle(image, new Point(bigRect.x, bigRect.y),
+						new Point(bigRect.x + bigRect.width, bigRect.y
+								+ bigRect.height), new Scalar(0, 255, 0));
 				Settings.getViewer().setImage(image);
 			}
 

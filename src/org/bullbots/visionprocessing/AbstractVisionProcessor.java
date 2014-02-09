@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import org.bullbots.visionprocessing.camera.Camera;
 import org.bullbots.visionprocessing.processor.AutonomousProcessor;
 import org.bullbots.visionprocessing.processor.BallFinder;
-import org.bullbots.visionprocessing.processor.impl.HaarCascadeBallFinder;
 import org.opencv.core.Core;
 
 public class AbstractVisionProcessor {
@@ -20,9 +19,9 @@ public class AbstractVisionProcessor {
 	protected BallFinder ballfinder;
 	protected VisionNetworkTable networkTable;
 	protected AutonomousProcessor autonomousProcessor;
-	
-	static Logger logger = LogManager.getLogger(AbstractVisionProcessor.class.getName());
 
+	static Logger logger = LogManager.getLogger(AbstractVisionProcessor.class
+			.getName());
 
 	public AbstractVisionProcessor() {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);

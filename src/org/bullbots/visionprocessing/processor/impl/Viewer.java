@@ -12,7 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import org.opencv.core.Mat;
-import org.opencv.highgui.Highgui;
 import org.opencv.imgproc.Imgproc;
 
 public class Viewer extends JFrame {
@@ -22,7 +21,7 @@ public class Viewer extends JFrame {
 
 	public Viewer() throws HeadlessException {
 		super("Modified camera image");
-	    setLayout(new BorderLayout());
+		setLayout(new BorderLayout());
 		this.addWindowListener(new WindowAdapter() {
 
 			public void windowClosing(WindowEvent e) {
@@ -30,7 +29,7 @@ public class Viewer extends JFrame {
 			}
 		});
 		imageContainer = new JLabel();
-		imageIcon= new ImageIcon();
+		imageIcon = new ImageIcon();
 		imageContainer.setIcon(imageIcon);
 		imageContainer.setBounds(0, 0, 320, 240);
 		this.setPreferredSize(new Dimension(320, 240));

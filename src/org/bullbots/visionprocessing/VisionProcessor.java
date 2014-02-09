@@ -1,14 +1,12 @@
 package org.bullbots.visionprocessing;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.bullbots.visionprocessing.processor.AutoInfo;
 import org.bullbots.visionprocessing.processor.BallFinderQueue;
 import org.bullbots.visionprocessing.processor.ImgInfo;
 import org.opencv.core.Mat;
 
 public class VisionProcessor extends AbstractVisionProcessor {
-	
+
 	BallFinderQueue bfQueue = new BallFinderQueue(5);
 
 	// processor
@@ -26,7 +24,7 @@ public class VisionProcessor extends AbstractVisionProcessor {
 				handleTeleOp();
 				break;
 			default:
-				logger.error("Mode is:"+mode+" - not doing anything....");
+				logger.error("Mode is:" + mode + " - not doing anything....");
 			}
 		}
 	}
@@ -48,7 +46,7 @@ public class VisionProcessor extends AbstractVisionProcessor {
 	private void handleAuto() {
 		Mat img = camera.getImage();
 		AutoInfo info = autonomousProcessor.processImage(img);
-		 
+
 	}
 
 	// Main file

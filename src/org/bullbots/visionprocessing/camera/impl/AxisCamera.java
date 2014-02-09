@@ -19,7 +19,7 @@ import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 
 public class AxisCamera implements Camera {
-	
+
 	static Logger logger = LogManager.getLogger(AxisCamera.class.getName());
 
 	private String addr = "http://10.18.91.11/mjpg/video.mjpg", user = "frc",
