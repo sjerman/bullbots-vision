@@ -26,7 +26,7 @@ public class HaarCascadeBallFinder implements BallFinder {
 		
 	    // Create a face detector from the cascade file in the resources
 	    // directory.
-	    CascadeClassifier ballFinder = new CascadeClassifier(getClass().getResource("lbpcascade_frontalface.xml").getPath());
+	    CascadeClassifier ballFinder = new CascadeClassifier(getClass().getResource("training.xml").getPath());
 
 	    // Detect faces in the image.
 	    // MatOfRect is a special container class for Rect.
