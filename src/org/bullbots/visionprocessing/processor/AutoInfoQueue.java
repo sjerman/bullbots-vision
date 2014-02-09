@@ -33,4 +33,16 @@ public class AutoInfoQueue extends ArrayDeque<AutoInfo> implements AutoInfo {
 		return this.size() == this.max;
 	}
 
+	@Override
+	public boolean canSeeTape() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public double getVerticalHeight() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
