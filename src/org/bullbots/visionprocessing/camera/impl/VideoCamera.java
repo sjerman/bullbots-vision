@@ -9,7 +9,7 @@ import org.opencv.imgproc.Imgproc;
 
 public class VideoCamera implements Camera {
 
-	private final VideoCapture VC;
+	public static VideoCapture VC=null;
 	private Mat image;
 
 	public VideoCamera() {
@@ -19,6 +19,7 @@ public class VideoCamera implements Camera {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		Runtime.getRuntime().addShutdownHook(new Shutdownhook());
 	}
 
 	public Mat getImage() {
@@ -29,6 +30,14 @@ public class VideoCamera implements Camera {
 		Imgproc.resize(image, image, new Size(320, 240));
 
 		return image;
+	}
+	
+	private static class Shutdownhook extends Thread {
+		public void run() {
+			System.out.println("Shutting down");
+			VC.release();
+			
+		}
 	}
 
 }
