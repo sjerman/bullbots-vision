@@ -22,20 +22,26 @@ public class HaarCascadeBallFinder implements BallFinder {
 
 	static Logger logger = LogManager.getLogger(HaarCascadeBallFinder.class
 			.getName());
+	
+	private CascadeClassifier ballFinder;
 
-	public ImgInfo processImage(Mat image) {
+	public HaarCascadeBallFinder() {
+		String haarFile = Settings.getHaarCascade();
+		logger.info("Loading haar classifier from: '"+haarFile+"'");
 
 		// Create a face detector from the cascade file in the resources
 		// directory.
-		CascadeClassifier ballFinder = new CascadeClassifier(getClass()
-				.getResource("training.xml").getPath());
-
+		 ballFinder = new CascadeClassifier(haarFile);
+	}
+	
+	public ImgInfo processImage(Mat image) {
+		
 		// Detect faces in the image.
 		// MatOfRect is a special container class for Rect.
 		MatOfRect faceDetections = new MatOfRect();
 		ballFinder.detectMultiScale(image, faceDetections);
 
-		logger.trace(String.format("Detected %s faces",
+		logger.trace(String.format("Detected %s objects",
 				faceDetections.toArray().length));
 
 		// Draw a bounding box around each face.

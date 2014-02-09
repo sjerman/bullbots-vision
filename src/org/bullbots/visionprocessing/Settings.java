@@ -25,6 +25,8 @@ public class Settings extends Properties {
 
 	public static final String VIDEO = "video";
 
+	public static final String HAARCASCADE = "haarcascade";
+	
 	private static Settings INSTANCE = null;
 
 	private Viewer viewer = null;
@@ -74,6 +76,12 @@ public class Settings extends Properties {
 
 	public static Viewer getViewer() {
 		return getInstance().viewer;
+	}
+	
+	public static String getHaarCascade() {
+		String vid= getInstance().getProperty(HAARCASCADE);
+		assert(vid !=null);
+		return vid;
 	}
 
 }
