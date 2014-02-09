@@ -4,7 +4,10 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.bullbots.visionprocessing.Settings;
+import org.bullbots.visionprocessing.camera.impl.AxisCamera;
 import org.bullbots.visionprocessing.processor.BallFinder;
 import org.bullbots.visionprocessing.processor.ImgInfo;
 import org.opencv.core.Core;
@@ -21,6 +24,8 @@ import org.opencv.imgproc.Moments;
 import org.opencv.objdetect.CascadeClassifier;
 
 public class HaarCascadeBallFinder implements BallFinder {
+	
+	static Logger logger = LogManager.getLogger(HaarCascadeBallFinder.class.getName());
 
 	public ImgInfo processImage(Mat image) {
 		
@@ -33,7 +38,7 @@ public class HaarCascadeBallFinder implements BallFinder {
 	    MatOfRect faceDetections = new MatOfRect();
 	    ballFinder.detectMultiScale(image, faceDetections);
 
-	    //System.out.println(String.format("Detected %s faces", faceDetections.toArray().length));
+	    logger.trace(String.format("Detected %s faces", faceDetections.toArray().length));
 
 	    // Draw a bounding box around each face.
 	    for (Rect rect : faceDetections.toArray()) {
