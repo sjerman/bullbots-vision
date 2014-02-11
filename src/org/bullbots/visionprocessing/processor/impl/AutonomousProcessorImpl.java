@@ -23,8 +23,8 @@ public class AutonomousProcessorImpl implements AutonomousProcessor {
 	private double horizontalRatio = 24 / 4;
 	private double verticalRatio = 4 / 32;
 	
-	private double horizontalTolerance = 0.5;
-	private double verticalTolerance = 0.5;
+	private double horizontalTolerance = 1;
+	private double verticalTolerance = 1;
 	
 	static Logger logger = LogManager.getLogger(AutonomousProcessorImpl.class.getName());
 
@@ -52,6 +52,8 @@ public class AutonomousProcessorImpl implements AutonomousProcessor {
 		// Taking away very small objects
 		contours = getObjectsLargerThan(contours, 100);
 		
+		boolean tapeFound = false;
+		
 		// Checking if at least 2 objects were found
 		if(contours.size() > 1) {
 			// Finding the two largest objects, in order to look for the two pieces of tape
@@ -70,23 +72,32 @@ public class AutonomousProcessorImpl implements AutonomousProcessor {
 			
 			double rect1Ratio = rect1.width / (rect1.height + 0.0);
 			double rect2Ratio = rect2.width / (rect2.height + 0.0);
+			
 					
 			// Checking if both of the shapes match either the horizontal or vertical ratios, within
 			// a given tolerance
 			if((Math.abs(rect1Ratio - horizontalRatio) <= horizontalTolerance || 
 					Math.abs(rect2Ratio - horizontalRatio) <= horizontalTolerance) &&
 					(Math.abs(rect1Ratio - verticalRatio) <= verticalTolerance || 
-					Math.abs(rect2Ratio - verticalRatio) <= verticalTolerance))
-				logger.trace("TAPE FOUND!!!!!!!");
-				
+					Math.abs(rect2Ratio - verticalRatio) <= verticalTolerance)) {
+				tapeFound = true;
 				// Drawing a rectangle around each object
 				Scalar color = new Scalar(255, 0, 0);
 				Core.rectangle(image, new Point(rect1.x, rect1.y), new Point(rect1.x + rect1.width, rect1.y + rect1.height), color);
 				Core.rectangle(image, new Point(rect2.x, rect2.y), new Point(rect2.x + rect2.width, rect2.y + rect2.height), color);
+				
+				// Finding the distance from the tape
+				System.out.println("Vertical Height = " + Math.max(rect1.height, rect2.height));
+				
+				
+			}
 		}
 		
 		if (Settings.showImage()) {
 			Settings.getViewer().setImage(image);
+		}
+		if(tapeFound) {
+			return new AutoInfoImpl(true, 0.0);
 		}
 		return null;
 	}

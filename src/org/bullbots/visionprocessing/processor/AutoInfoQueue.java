@@ -40,7 +40,7 @@ public class AutoInfoQueue extends ArrayDeque<AutoInfo> implements AutoInfo {
 	}
 
 	@Override
-	public double getVerticalHeight() {
+	public double getDistanceFromTape() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

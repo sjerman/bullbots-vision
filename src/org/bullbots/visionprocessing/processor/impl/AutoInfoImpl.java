@@ -5,7 +5,7 @@ import org.bullbots.visionprocessing.processor.AutoInfo;
 public class AutoInfoImpl implements AutoInfo {
 	
 	boolean canSeeTape;
-	double verticalHeight;
+	double disFromTape;
 
 	@Override
 	public boolean canSeeTape() {
@@ -13,18 +13,18 @@ public class AutoInfoImpl implements AutoInfo {
 	}
 
 	@Override
-	public double getVerticalHeight() {
-		return verticalHeight;
+	public double getDistanceFromTape() {
+		return disFromTape;
 	}
 
 	public AutoInfoImpl(boolean canSeeTape, double verticalHeight) {
 		this.canSeeTape = canSeeTape;
-		this.verticalHeight = verticalHeight;
+		this.disFromTape = verticalHeight;
 	}
 
 	@Override
 	public String toString() {
 		return "AutoInfoImpl [canSeeTape=" + canSeeTape + ", verticalHeight="
-				+ verticalHeight + "]";
+				+ disFromTape + "]";
 	}
 }
