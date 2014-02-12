@@ -66,6 +66,7 @@ public class FirstNetworkTable implements VisionNetworkTable, ITableListener,
 	@Override
 	public void connected(IRemote remote) {
 		logger.info("Robot connected");
+		networkTable.putString("robotMode", Mode.TELEOP.name());
 	}
 
 	@Override

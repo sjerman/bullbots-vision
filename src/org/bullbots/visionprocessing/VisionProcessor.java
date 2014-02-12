@@ -24,6 +24,8 @@ public class VisionProcessor extends AbstractVisionProcessor {
 				handleTeleOp();
 				break;
 			default:
+				sleep();
+				sleep();
 				logger.error("Mode is:" + mode + " - not doing anything....");
 			}
 		}
