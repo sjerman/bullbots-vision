@@ -37,7 +37,17 @@ public class NetworkDummy implements VisionNetworkTable {
 
 	@Override
 	public void setAutoInfo(AutoInfo info) {
-		// TODO Auto-generated method stub
+		if (info == null) {
+			if (!norepeat) {
+				logger.info("No rectangles .....");
+				norepeat = true;
+			}
+		} else {
+			long n = System.nanoTime();
+			long diff = (n - last) / 1000 / 1000;
+			logger.info(diff + "ms Setting:" + info);
+			last = n;
+		}
 
 	}
 

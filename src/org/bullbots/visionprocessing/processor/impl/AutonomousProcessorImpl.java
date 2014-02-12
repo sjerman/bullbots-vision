@@ -87,18 +87,20 @@ public class AutonomousProcessorImpl implements AutonomousProcessor {
 				Core.rectangle(image, new Point(rect2.x, rect2.y), new Point(rect2.x + rect2.width, rect2.y + rect2.height), color);
 				
 				// Finding the distance from the tape
-				System.out.println("Vertical Height = " + Math.max(rect1.height, rect2.height));
-				
+				double height = Math.max(rect1.height, rect2.height);
+				logger.info("Found rectangles - Vertical Height = " + height);
+				if (Settings.showImage()) {
+					Settings.getViewer().setImage(image);
+				}
+				if(tapeFound) {
+					return new AutoInfoImpl(true, height);
+				}
 				
 			}
 		}
 		
-		if (Settings.showImage()) {
-			Settings.getViewer().setImage(image);
-		}
-		if(tapeFound) {
-			return new AutoInfoImpl(true, 0.0);
-		}
+
+
 		return null;
 	}
 	

@@ -49,7 +49,6 @@ public class VisionProcessor extends AbstractVisionProcessor {
 		Mat img = camera.getImage();
 		AutoInfo info = autonomousProcessor.processImage(img);
 		networkTable.setAutoInfo(info);
-		logger.info(info);
 	}
 
 	// Main file
