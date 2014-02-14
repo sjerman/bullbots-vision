@@ -15,10 +15,18 @@ import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
+import org.opencv.highgui.Highgui;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.imgproc.Moments;
 
 public class RedBallFinder implements BallFinder {
+	
+	static long imageNo =0;
+	
+	private void saveImage(Mat image,String name){
+		if ((imageNo++ % 15)==0)
+		Highgui.imwrite("images/"+name+ imageNo + ".png",image);
+	}
 
 	public ImgInfo processImage(Mat image) {
 		double xDistance;
@@ -37,12 +45,14 @@ public class RedBallFinder implements BallFinder {
 		// Filters the image to look for red (This needs to be played with)
 		int rotation = 128 - 255;
 		Core.add(image2, new Scalar(rotation, 0, 0), image2);
+		
+		saveImage(image2,"ROT-");
 
 		// Core.inRange(image2, new Scalar(114, 114, 114), new Scalar(142, 255,
 		// 255), image3); // BEFORE
 		// Hue, Saturation (Black to red), Value (Brightness)
-		Core.inRange(image2, new Scalar(114, 64, 40),
-				new Scalar(142, 255, 255), image3);
+		Core.inRange(image2, new Scalar(90, 120, 60),
+				new Scalar(120, 255, 183), image3);
 
 		// Finding contours
 		ArrayList<MatOfPoint> contours = new ArrayList<MatOfPoint>();
@@ -81,6 +91,7 @@ public class RedBallFinder implements BallFinder {
 								boundingRect.y + boundingRect.height),
 						new Scalar(255, 255, 100));
 				Settings.getViewer().setImage(image);
+				saveImage(image,"img-");
 			}
 
 			return new ImgInfoImpl(Math.round(xDistance), Math.round(diameter));
