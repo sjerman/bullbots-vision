@@ -41,7 +41,7 @@ public class RedBallFinder implements BallFinder {
 		// Core.inRange(image2, new Scalar(114, 114, 114), new Scalar(142, 255,
 		// 255), image3); // BEFORE
 		// Hue, Saturation (Black to red), Value (Brightness)
-		Core.inRange(image2, new Scalar(114, 64, 64),
+		Core.inRange(image2, new Scalar(114, 64, 40),
 				new Scalar(142, 255, 255), image3);
 
 		// Finding contours

@@ -51,7 +51,7 @@ public class FirstNetworkTable implements VisionNetworkTable, ITableListener,
 	@Override
 	public void setAutoInfo(AutoInfo info) {
 		networkTable.putBoolean("tapefound", info.canSeeTape());
-		networkTable.putValue("distancefromtape", info.getDistanceFromTape());
+		networkTable.putNumber("distancefromtape", info.getDistanceFromTape());
 	}
 
 	@Override
