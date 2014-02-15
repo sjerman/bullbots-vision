@@ -27,6 +27,8 @@ public class Settings extends Properties {
 
 	public static final String HAARCASCADE = "haarcascade";
 	
+	public static final String SAVEIMAGES = "saveimages";
+	
 	private static Settings INSTANCE = null;
 
 	private Viewer viewer = null;
@@ -59,6 +61,14 @@ public class Settings extends Properties {
 
 	public static boolean showImage() {
 		String prop = getInstance().getProperty(SHOW_IMAGE, "true");
+		if (prop.equals("true"))
+			return true;
+		else
+			return false;
+	}
+	
+	public static boolean saveImages() {
+		String prop = getInstance().getProperty(SAVEIMAGES, "false");
 		if (prop.equals("true"))
 			return true;
 		else

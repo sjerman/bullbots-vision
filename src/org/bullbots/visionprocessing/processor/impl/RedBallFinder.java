@@ -24,8 +24,9 @@ public class RedBallFinder implements BallFinder {
 	static long imageNo =0;
 	
 	private void saveImage(Mat image,String name){
-		if ((imageNo++ % 15)==0)
-		Highgui.imwrite("images/"+name+ imageNo + ".png",image);
+		
+		if (Settings.saveImages() && (imageNo++ % 15)==0)
+			Highgui.imwrite("images/"+name+ imageNo + ".png",image);
 	}
 
 	public ImgInfo processImage(Mat image) {
