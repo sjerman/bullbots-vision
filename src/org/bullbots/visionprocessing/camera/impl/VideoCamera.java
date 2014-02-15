@@ -10,10 +10,15 @@ import org.opencv.imgproc.Imgproc;
 public class VideoCamera implements Camera {
 
 	public static VideoCapture VC=null;
+	
 	private Mat image;
 
 	public VideoCamera() {
-		VC = new VideoCapture(Settings.getVideo());
+	}
+
+	public void setAddress(String addr) {
+		int address = Integer.parseInt(addr);
+		VC = new VideoCapture(address);
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {

@@ -32,7 +32,7 @@ public class VisionProcessor extends AbstractVisionProcessor {
 	}
 
 	private void handleTeleOp() {
-		Mat img = camera.getImage();
+		Mat img = ballCamera.getImage();
 		ImgInfo info = ballfinder.processImage(img);
 		if (info == null) {
 			bfQueue.clear();
@@ -46,7 +46,7 @@ public class VisionProcessor extends AbstractVisionProcessor {
 	}
 
 	private void handleAuto() {
-		Mat img = camera.getImage();
+		Mat img = autoCamera.getImage();
 		AutoInfo info = autonomousProcessor.processImage(img);
 		networkTable.setAutoInfo(info);
 	}

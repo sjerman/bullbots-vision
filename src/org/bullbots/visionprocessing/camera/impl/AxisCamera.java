@@ -22,8 +22,6 @@ public class AxisCamera implements Camera {
 
 	static Logger logger = LogManager.getLogger(AxisCamera.class.getName());
 
-	private String addr = "http://10.18.91.11/mjpg/video.mjpg", user = "frc",
-			pass = "frc";
 	private byte[] curFrame;
 
 	private HttpURLConnection conn;
@@ -38,11 +36,9 @@ public class AxisCamera implements Camera {
 	private Base64Encoder base64 = new Base64Encoder();
 
 	public AxisCamera() {
-		setupConnection();
-		logger.info(">> Connection to camera was successfully established.");
 	}
 
-	public void setupConnection() {
+	public void setupConnection(String addr) {
 		try {
 			url = new URL(addr);
 		} catch (MalformedURLException e) {
@@ -53,8 +49,6 @@ public class AxisCamera implements Camera {
 		try {
 			// Sets up a connection with the camera
 			conn = (HttpURLConnection) url.openConnection();
-			// conn.setRequestProperty("Authorization",
-			// "Basic " + base64.encode(user + ":" + pass));
 			httpIn = new BufferedInputStream(conn.getInputStream(), 8192);
 
 		} catch (IOException e) {
@@ -111,6 +105,12 @@ public class AxisCamera implements Camera {
 				CvType.CV_8UC3);
 		matImage.put(0, 0, pixels);
 		return matImage;
+	}
+
+	@Override
+	public void setAddress(String addr) {
+		setupConnection(addr);
+		logger.info(">> Connection to camera was successfully established.");
 	}
 
 }

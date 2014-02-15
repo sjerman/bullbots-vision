@@ -15,7 +15,7 @@ public class AbstractVisionProcessor {
 
 	protected Settings settings = Settings.getInstance();
 
-	protected Camera camera;
+	protected Camera autoCamera,ballCamera;
 	protected BallFinder ballfinder;
 	protected VisionNetworkTable networkTable;
 	protected AutonomousProcessor autonomousProcessor;
@@ -30,8 +30,22 @@ public class AbstractVisionProcessor {
 	}
 
 	protected void init() {
-		camera = loadClass(Camera.class,
-				settings.getProperty(Settings.CAMERA_CLASS));
+		autoCamera = loadClass(Camera.class,
+				settings.getProperty(Settings.AUTO_CAMERA_CLASS));
+		String autoCameraAddress =
+				settings.getProperty(Settings.AUTO_CAMERA_ADDR);
+		ballCamera = loadClass(Camera.class,
+				settings.getProperty(Settings.BALL_CAMERA_CLASS));
+		String ballCameraAddress = 
+				settings.getProperty(Settings.BALL_CAMERA_ADDR);
+		if  (autoCameraAddress.equals(ballCameraAddress)) {
+			ballCamera = autoCamera;
+			ballCamera.setAddress(ballCameraAddress);
+		} else {
+			ballCamera.setAddress(ballCameraAddress);
+			autoCamera.setAddress(autoCameraAddress);
+		}
+
 		ballfinder = loadClass(BallFinder.class,
 				settings.getProperty(Settings.BALLFINDER_CLASS));
 		networkTable = loadClass(VisionNetworkTable.class,

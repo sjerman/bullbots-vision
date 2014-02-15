@@ -13,8 +13,6 @@ public class Settings extends Properties {
 
 	public static final String NETWORKTABLE_CLASS = "networktable";
 
-	public static final String CAMERA_CLASS = "camera";
-
 	public static final String BALLFINDER_CLASS = "ballfinder";
 
 	public static final String TEST_MODE = "testmode";
@@ -23,11 +21,14 @@ public class Settings extends Properties {
 
 	public static final String AUTONOMOUS_PROCESSOR = "autoprocessor";
 
-	public static final String VIDEO = "video";
-
 	public static final String HAARCASCADE = "haarcascade";
 	
 	public static final String SAVEIMAGES = "saveimages";
+	
+	public static final String BALL_CAMERA_CLASS = "ballCamera";
+	public static final String BALL_CAMERA_ADDR = "ballCameraAddress";
+	public static final String AUTO_CAMERA_CLASS = "autoCamera";	
+	public static final String AUTO_CAMERA_ADDR = "ballCameraAddress";
 	
 	private static Settings INSTANCE = null;
 
@@ -77,11 +78,6 @@ public class Settings extends Properties {
 
 	public static String getTestMode() {
 		return getInstance().getProperty(TEST_MODE, "AUTO");
-	}
-
-	public static int getVideo() {
-		String vid = getInstance().getProperty(VIDEO, "0");
-		return Integer.parseInt(vid);
 	}
 
 	public static Viewer getViewer() {

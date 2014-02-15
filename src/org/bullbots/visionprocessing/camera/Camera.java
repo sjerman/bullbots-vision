@@ -5,5 +5,7 @@ import org.opencv.core.Mat;
 public interface Camera {
 
 	Mat getImage();
+	
+	void setAddress(String addr);
 
 }
