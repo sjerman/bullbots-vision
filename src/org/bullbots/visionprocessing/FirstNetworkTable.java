@@ -17,6 +17,9 @@ public class FirstNetworkTable implements VisionNetworkTable, ITableListener,
 
 	NetworkTable networkTable;
 
+	boolean tapefound = false;
+	double distanceFromTable = 0.0;
+
 	static Logger logger = LogManager.getLogger(FirstNetworkTable.class
 			.getName());
 
@@ -50,8 +53,18 @@ public class FirstNetworkTable implements VisionNetworkTable, ITableListener,
 
 	@Override
 	public void setAutoInfo(AutoInfo info) {
-		networkTable.putBoolean("tapefound", info.canSeeTape());
-		networkTable.putNumber("distancefromtape", info.getDistanceFromTape());
+
+		if (info.canSeeTape() != tapefound) {
+			networkTable.putBoolean("tapefound", info.canSeeTape());
+			tapefound = info.canSeeTape();
+		}
+
+		if (info.getDistanceFromTape() != distanceFromTable) {
+			networkTable.putNumber("distancefromtape",
+					info.getDistanceFromTape());
+			distanceFromTable = info.getDistanceFromTape();
+		}
+
 	}
 
 	@Override

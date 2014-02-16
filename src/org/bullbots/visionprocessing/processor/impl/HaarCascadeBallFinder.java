@@ -1,41 +1,36 @@
 package org.bullbots.visionprocessing.processor.impl;
 
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bullbots.visionprocessing.Settings;
 import org.bullbots.visionprocessing.processor.BallFinder;
 import org.bullbots.visionprocessing.processor.ImgInfo;
 import org.opencv.core.Core;
-import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
 import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
-import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
 
 public class HaarCascadeBallFinder implements BallFinder {
 
 	static Logger logger = LogManager.getLogger(HaarCascadeBallFinder.class
 			.getName());
-	
+
 	private CascadeClassifier ballFinder;
 
 	public HaarCascadeBallFinder() {
 		String haarFile = Settings.getHaarCascade();
-		logger.info("Loading haar classifier from: '"+haarFile+"'");
+		logger.info("Loading haar classifier from: '" + haarFile + "'");
 
 		// Create a face detector from the cascade file in the resources
 		// directory.
-		 ballFinder = new CascadeClassifier(haarFile);
+		ballFinder = new CascadeClassifier(haarFile);
 	}
-	
+
 	public ImgInfo processImage(Mat image) {
-		
+
 		// Detect faces in the image.
 		// MatOfRect is a special container class for Rect.
 		MatOfRect faceDetections = new MatOfRect();

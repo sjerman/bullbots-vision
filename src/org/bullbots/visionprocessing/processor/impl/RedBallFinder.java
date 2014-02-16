@@ -1,14 +1,11 @@
 package org.bullbots.visionprocessing.processor.impl;
 
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
 import java.util.ArrayList;
 
 import org.bullbots.visionprocessing.Settings;
 import org.bullbots.visionprocessing.processor.BallFinder;
 import org.bullbots.visionprocessing.processor.ImgInfo;
 import org.opencv.core.Core;
-import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Point;
@@ -20,13 +17,13 @@ import org.opencv.imgproc.Imgproc;
 import org.opencv.imgproc.Moments;
 
 public class RedBallFinder implements BallFinder {
-	
-	static long imageNo =0;
-	
-	private void saveImage(Mat image,String name){
-		
-		if (Settings.saveImages() && (imageNo++ % 15)==0)
-			Highgui.imwrite("images/"+name+ imageNo + ".png",image);
+
+	static long imageNo = 0;
+
+	private void saveImage(Mat image, String name) {
+
+		if (Settings.saveImages() && (imageNo++ % 15) == 0)
+			Highgui.imwrite("images/" + name + imageNo + ".png", image);
 	}
 
 	public ImgInfo processImage(Mat image) {
@@ -46,8 +43,8 @@ public class RedBallFinder implements BallFinder {
 		// Filters the image to look for red (This needs to be played with)
 		int rotation = 128 - 255;
 		Core.add(image2, new Scalar(rotation, 0, 0), image2);
-		
-		saveImage(image2,"ROT-");
+
+		saveImage(image2, "ROT-");
 
 		// Core.inRange(image2, new Scalar(114, 114, 114), new Scalar(142, 255,
 		// 255), image3); // BEFORE
@@ -92,7 +89,7 @@ public class RedBallFinder implements BallFinder {
 								boundingRect.y + boundingRect.height),
 						new Scalar(255, 255, 100));
 				Settings.getViewer().setImage(image);
-				saveImage(image,"img-");
+				saveImage(image, "img-");
 			}
 
 			return new ImgInfoImpl(Math.round(xDistance), Math.round(diameter));

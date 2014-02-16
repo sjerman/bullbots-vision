@@ -1,6 +1,5 @@
 package org.bullbots.visionprocessing.camera.impl;
 
-import org.bullbots.visionprocessing.Settings;
 import org.bullbots.visionprocessing.camera.Camera;
 import org.opencv.core.Mat;
 import org.opencv.core.Size;
@@ -9,8 +8,8 @@ import org.opencv.imgproc.Imgproc;
 
 public class VideoCamera implements Camera {
 
-	public static VideoCapture VC=null;
-	
+	public static VideoCapture VC = null;
+
 	private Mat image;
 
 	public VideoCamera() {
@@ -36,12 +35,12 @@ public class VideoCamera implements Camera {
 
 		return image;
 	}
-	
+
 	private static class Shutdownhook extends Thread {
 		public void run() {
 			System.out.println("Shutting down");
 			VC.release();
-			
+
 		}
 	}
 

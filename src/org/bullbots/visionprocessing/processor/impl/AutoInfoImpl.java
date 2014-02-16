@@ -3,7 +3,7 @@ package org.bullbots.visionprocessing.processor.impl;
 import org.bullbots.visionprocessing.processor.AutoInfo;
 
 public class AutoInfoImpl implements AutoInfo {
-	
+
 	boolean canSeeTape;
 	double disFromTape;
 

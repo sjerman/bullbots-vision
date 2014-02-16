@@ -22,14 +22,14 @@ public class Settings extends Properties {
 	public static final String AUTONOMOUS_PROCESSOR = "autoprocessor";
 
 	public static final String HAARCASCADE = "haarcascade";
-	
+
 	public static final String SAVEIMAGES = "saveimages";
-	
+
 	public static final String BALL_CAMERA_CLASS = "ballCamera";
 	public static final String BALL_CAMERA_ADDR = "ballCameraAddress";
-	public static final String AUTO_CAMERA_CLASS = "autoCamera";	
+	public static final String AUTO_CAMERA_CLASS = "autoCamera";
 	public static final String AUTO_CAMERA_ADDR = "autoCameraAddress";
-	
+
 	private static Settings INSTANCE = null;
 
 	private Viewer viewer = null;
@@ -67,7 +67,7 @@ public class Settings extends Properties {
 		else
 			return false;
 	}
-	
+
 	public static boolean saveImages() {
 		String prop = getInstance().getProperty(SAVEIMAGES, "false");
 		if (prop.equals("true"))
@@ -83,10 +83,10 @@ public class Settings extends Properties {
 	public static Viewer getViewer() {
 		return getInstance().viewer;
 	}
-	
+
 	public static String getHaarCascade() {
-		String vid= getInstance().getProperty(HAARCASCADE);
-		assert(vid !=null);
+		String vid = getInstance().getProperty(HAARCASCADE);
+		assert (vid != null);
 		return vid;
 	}
 
