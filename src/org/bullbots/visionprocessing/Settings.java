@@ -28,7 +28,7 @@ public class Settings extends Properties {
 	public static final String BALL_CAMERA_CLASS = "ballCamera";
 	public static final String BALL_CAMERA_ADDR = "ballCameraAddress";
 	public static final String AUTO_CAMERA_CLASS = "autoCamera";	
-	public static final String AUTO_CAMERA_ADDR = "ballCameraAddress";
+	public static final String AUTO_CAMERA_ADDR = "autoCameraAddress";
 	
 	private static Settings INSTANCE = null;
 

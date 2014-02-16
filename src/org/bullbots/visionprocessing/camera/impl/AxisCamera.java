@@ -40,6 +40,7 @@ public class AxisCamera implements Camera {
 
 	public void setupConnection(String addr) {
 		try {
+			logger.info("Setting addrress to "+addr);
 			url = new URL(addr);
 		} catch (MalformedURLException e) {
 			System.err.println("Invalid URL");

@@ -15,6 +15,7 @@ import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
+import org.opencv.highgui.Highgui;
 import org.opencv.imgproc.Imgproc;
 
 public class AutonomousProcessorImpl implements AutonomousProcessor {
@@ -28,9 +29,19 @@ public class AutonomousProcessorImpl implements AutonomousProcessor {
 	
 	static Logger logger = LogManager.getLogger(AutonomousProcessorImpl.class.getName());
 
+	static long imageNo =0;
+	
+	private void saveImage(Mat image,String name){
+		
+		if (Settings.saveImages() && (imageNo++ % 15)==0)
+			Highgui.imwrite("images/"+name+ imageNo + ".png",image);
+	}
+
 	@Override
 	public AutoInfo processImage(Mat image) {
 		Mat dirtyImage = new Mat();
+		
+		saveImage(image,"auto");
 		
 		// Blurring the image
 		Imgproc.blur(image, dirtyImage, new Size(5, 5));
