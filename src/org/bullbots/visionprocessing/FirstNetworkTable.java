@@ -38,15 +38,32 @@ public class FirstNetworkTable implements VisionNetworkTable, ITableListener,
 	public Mode getRobotMode() {
 		return mode;
 	}
+	
+	boolean ballFound = false;
+	float xoffset = 0.0f;
+	float size = 0.0f;
+	
 
 	@Override
 	public void setTeleopInfo(ImgInfo info) {
 		if (info != null) {
-			networkTable.putBoolean("ballFound", true);
-			networkTable.putNumber("xoffset", info.getOffset());
-			networkTable.putNumber("size", info.getSize());
+			if (ballFound==false) {
+				networkTable.putBoolean("ballFound", true);
+				ballFound=true;
+			}
+			if (xoffset != info.getOffset()){
+				networkTable.putNumber("xoffset", info.getOffset());
+				xoffset = info.getOffset();
+			}
+			if (size != info.getSize()) {
+				networkTable.putNumber("size", info.getSize());
+				size = info.getSize();
+			}
 		} else {
-			networkTable.putBoolean("ballFound", false);
+			if (ballFound) {
+				networkTable.putBoolean("ballFound", false);
+				ballFound =false;
+			}
 		}
 
 	}

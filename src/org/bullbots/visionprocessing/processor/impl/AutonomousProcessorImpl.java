@@ -106,6 +106,7 @@ public class AutonomousProcessorImpl implements AutonomousProcessor {
 				// Finding the distance from the tape
 				double height = Math.max(rect1.height, rect2.height);
 				logger.info("Found rectangles - Vertical Height = " + height);
+				saveImage(image, "autor");
 				if (Settings.showImage()) {
 					Settings.getViewer().setImage(image);
 				}
@@ -113,6 +114,10 @@ public class AutonomousProcessorImpl implements AutonomousProcessor {
 					return new AutoInfoImpl(true, height);
 				}
 
+			}
+		} else {
+			if (Settings.showImage()) {
+				Settings.getViewer().setImage(image);
 			}
 		}
 
