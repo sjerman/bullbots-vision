@@ -31,6 +31,8 @@ public class FirstNetworkTable implements VisionNetworkTable, ITableListener,
 		networkTable = NetworkTable.getTable("visionprocessing");
 		networkTable.addTableListener("robotMode", this, true);
 		networkTable.addConnectionListener(this, true);
+		networkTable.putBoolean("ballFound", false);
+		networkTable.putBoolean("tapefound",false);
 
 	}
 

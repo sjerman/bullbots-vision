@@ -2,6 +2,8 @@ package org.bullbots.visionprocessing.processor.impl;
 
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.bullbots.visionprocessing.Settings;
 import org.bullbots.visionprocessing.processor.BallFinder;
 import org.bullbots.visionprocessing.processor.ImgInfo;
@@ -17,6 +19,9 @@ import org.opencv.imgproc.Imgproc;
 import org.opencv.imgproc.Moments;
 
 public abstract class ColorBallFinder implements BallFinder {
+	
+	static Logger logger = LogManager.getLogger(ColorBallFinder.class
+			.getName());
 
 	static long imageNo = 0;
 
@@ -33,6 +38,8 @@ public abstract class ColorBallFinder implements BallFinder {
 		double diameter;
 		boolean ballFound = false;
 		Mat image2 = new Mat();
+		
+		saveImage(image, "teleop-");
 		
 		image2 = filterColor(image);
 
@@ -82,7 +89,9 @@ public abstract class ColorBallFinder implements BallFinder {
 				Settings.getViewer().setImage(image);
 			}
 		}
-
+		if (Settings.showImage()) {
+			Settings.getViewer().setImage(image);
+		}
 		return null;
 	}
 

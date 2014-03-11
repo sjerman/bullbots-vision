@@ -19,9 +19,11 @@ public class VisionProcessor extends AbstractVisionProcessor {
 			switch (mode) {
 			case AUTO:
 				handleAuto();
+
 				break;
 			case TELEOP:
 				handleTeleOp();
+				logger.info("Telop loop");
 				break;
 			default:
 				sleep();
@@ -49,6 +51,7 @@ public class VisionProcessor extends AbstractVisionProcessor {
 		Mat img = autoCamera.getImage();
 
 		AutoInfo info = autonomousProcessor.processImage(img);
+		logger.info("Auto loop"+info.toString());
 		networkTable.setAutoInfo(info);
 	}
 

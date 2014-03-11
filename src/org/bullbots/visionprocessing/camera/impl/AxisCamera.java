@@ -17,6 +17,8 @@ import org.apache.logging.log4j.Logger;
 import org.bullbots.visionprocessing.camera.Camera;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
+import org.opencv.core.Size;
+import org.opencv.imgproc.Imgproc;
 
 public class AxisCamera implements Camera {
 
@@ -96,7 +98,9 @@ public class AxisCamera implements Camera {
 	}
 
 	public Mat getImage() {
-		return convBuff2Mat(grabImage());
+		Mat image =  convBuff2Mat(grabImage());
+		Imgproc.resize(image, image, new Size(480, 360));	
+		return image;
 	}
 
 	public Mat convBuff2Mat(BufferedImage image) {

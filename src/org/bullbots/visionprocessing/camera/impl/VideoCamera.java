@@ -31,7 +31,7 @@ public class VideoCamera implements Camera {
 
 		VC.read(image);
 
-		Imgproc.resize(image, image, new Size(320, 240));
+		Imgproc.resize(image, image, new Size(480, 360));
 
 		return image;
 	}

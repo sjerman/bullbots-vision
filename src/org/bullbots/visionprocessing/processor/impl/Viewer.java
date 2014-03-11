@@ -12,12 +12,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import org.opencv.core.Mat;
+import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
 public class Viewer extends JFrame {
 
 	private JLabel imageContainer;
 	private ImageIcon imageIcon;
+	
+	Dimension image_size = new Dimension(480,360);
 
 	public Viewer() throws HeadlessException {
 		super("Modified camera image");
@@ -31,8 +34,8 @@ public class Viewer extends JFrame {
 		imageContainer = new JLabel();
 		imageIcon = new ImageIcon();
 		imageContainer.setIcon(imageIcon);
-		imageContainer.setBounds(0, 0, 320, 240);
-		this.setPreferredSize(new Dimension(320, 240));
+		imageContainer.setBounds(0, 0, image_size.width, image_size.height);
+		this.setPreferredSize(image_size);
 		this.getContentPane().add(imageContainer);
 		pack();
 		setLocationRelativeTo(null);
