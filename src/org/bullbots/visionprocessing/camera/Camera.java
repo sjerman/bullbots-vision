@@ -7,5 +7,7 @@ public interface Camera {
 	Mat getImage();
 
 	void setAddress(String addr);
+	
+	void start();
 
 }

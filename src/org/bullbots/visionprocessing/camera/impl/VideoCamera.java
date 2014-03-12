@@ -44,4 +44,8 @@ public class VideoCamera implements Camera {
 		}
 	}
 
+	@Override
+	public void start() {
+	}
+
 }

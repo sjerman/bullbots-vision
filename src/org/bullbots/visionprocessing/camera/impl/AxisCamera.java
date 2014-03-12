@@ -28,6 +28,8 @@ public class AxisCamera implements Camera {
 
 	private HttpURLConnection conn;
 	private BufferedInputStream httpIn;
+	
+	private String address;
 
 	private boolean finished = false;
 
@@ -114,8 +116,17 @@ public class AxisCamera implements Camera {
 
 	@Override
 	public void setAddress(String addr) {
+		address = addr;
 		setupConnection(addr);
 		logger.info(">> Connection to camera was successfully established.");
+	}
+
+	@Override
+	public void start() {
+		httpIn = null;
+		conn.disconnect();
+		conn = null;
+		setAddress(address);		
 	}
 
 }

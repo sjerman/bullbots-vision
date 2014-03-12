@@ -8,6 +8,7 @@ import org.opencv.core.Mat;
 public class VisionProcessor extends AbstractVisionProcessor {
 
 	BallFinderQueue bfQueue = new BallFinderQueue(5);
+	Mode prev = networkTable.getRobotMode();
 
 	// processor
 	void run() {
@@ -19,7 +20,6 @@ public class VisionProcessor extends AbstractVisionProcessor {
 			switch (mode) {
 			case AUTO:
 				handleAuto();
-
 				break;
 			case TELEOP:
 				handleTeleOp();
@@ -34,6 +34,10 @@ public class VisionProcessor extends AbstractVisionProcessor {
 	}
 
 	private void handleTeleOp() {
+		if (prev != Mode.TELEOP ) {
+			ballCamera.start();
+			prev = Mode.TELEOP;
+		}
 		Mat img = ballCamera.getImage();
 		ImgInfo info = ballfinder.processImage(img);
 		if (info == null) {
@@ -48,6 +52,10 @@ public class VisionProcessor extends AbstractVisionProcessor {
 	}
 
 	private void handleAuto() {
+		if (prev != Mode.AUTO ) {
+			autoCamera.start();
+			prev = Mode.AUTO;
+		}
 		Mat img = autoCamera.getImage();
 
 		AutoInfo info = autonomousProcessor.processImage(img);
